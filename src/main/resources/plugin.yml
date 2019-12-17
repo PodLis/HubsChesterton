@@ -1,0 +1,30 @@
+name: HubsChesterton
+version: ${project.version}
+main: ru.hubsmc.ru.hubschesterton.HubsChesterton
+api-version: 1.13
+prefix: Chesterton
+authors: [Rosenboum]
+website: hubsmc.ru
+
+commands:
+  chesterton:
+    description: The main command for HubsChesterton
+    usage: <command>
+    aliases: [hc]
+
+permissions:
+  chesterton.*:
+    description: Gives access to all HubsChesterton permissions.
+    children:
+      chesterton.help: true
+      chesterton.reload: true
+      chesterton.open: true
+  chesterton.help:
+    description: Display help message.
+    default: false
+  chesterton.reload:
+    description: Reload the config files.
+    default: false
+  chesterton.open:
+    description: Open menu to the player.
+    default: false
