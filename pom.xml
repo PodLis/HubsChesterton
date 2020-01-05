@@ -69,8 +69,15 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.14.4-R0.1-SNAPSHOT</version>
+            <version>1.15.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>ru.hubsmc.hubsvalues</groupId>
+            <artifactId>HubsValues</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/HubsValues-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

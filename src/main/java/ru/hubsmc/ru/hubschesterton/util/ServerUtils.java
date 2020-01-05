@@ -3,7 +3,6 @@ package ru.hubsmc.ru.hubschesterton.util;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import ru.hubsmc.ru.hubschesterton.HubsChesterton;
 import ru.hubsmc.ru.hubschesterton.Permissions;
 
 import java.util.logging.Level;
@@ -11,7 +10,7 @@ import java.util.logging.Level;
 public class ServerUtils {
 
     public static void logConsole(Level level, String message) {
-        Bukkit.getLogger().log(level, HubsChesterton.CHAT_PREFIX + message);
+        Bukkit.getLogger().log(level, "[HC] " + message);
     }
 
     public static void logConsole(String message) {

@@ -1,0 +1,92 @@
+# HubsChesterton
+
+shop:
+  enchantments:
+    PROTECTION_ENVIRONMENTAL: 1000
+    PROTECTION_FIRE: 800
+    PROTECTION_FALL: 800
+    PROTECTION_EXPLOSIONS: 800
+    PROTECTION_PROJECTILE: 800
+    OXYGEN: 1500
+    WATER_WORKER: 5000
+    THORNS: 1100
+    DEPTH_STRIDER: 2000
+    FROST_WALKER: 2500
+    BINDING_CURSE: 1000
+    DAMAGE_ALL: 800
+    DAMAGE_UNDEAD: 300
+    DAMAGE_ARTHROPODS: 300
+    KNOCKBACK: 2000
+    FIRE_ASPECT: 3000
+    LOOT_BONUS_MOBS: 3000
+    SWEEPING_EDGE: 2000
+    DIG_SPEED: 600
+    SILK_TOUCH: 7000
+    DURABILITY: 1000
+    LOOT_BONUS_BLOCKS: 3500
+    ARROW_DAMAGE: 300
+    ARROW_KNOCKBACK: 2000
+    ARROW_FIRE: 5000
+    ARROW_INFINITE: 5000
+    LUCK: 1000
+    LURE: 1000
+    LOYALTY: 2000
+    IMPALING: 700
+    RIPTIDE: 2500
+    CHANNELING: 8000
+    MULTISHOT: 4000
+    QUICK_CHARGE: 1500
+    PIERCING: 1200
+    MENDING: 16000
+    VANISHING_CURSE: 1000
+  potions:
+    WATER: 15
+    AWKWARD: 95
+    THICK: 65
+    MUNDANE: 65
+    NIGHT_VISION: 205
+    INVISIBILITY: 235
+    JUMP: 160
+    FIRE_RESISTANCE: 255
+    SPEED: 150
+    SLOWNESS: 180
+    WATER_BREATHING: 330
+    INSTANT_HEAL: 200
+    INSTANT_DAMAGE: 225
+    POISON: 155
+    REGEN: 230
+    STRENGTH: 185
+    WEAKNESS: 130
+    LUCK: 585
+    TURTLE_MASTER: 4145
+    SLOW_FALLING: 230
+  sell-cost:
+    diamond: 100
+    cake: 3
+  brew-addition: 25
+  exp-cost: 100
+
+inscriptions:
+  category-item-lore-addition: "&aКликните, чтобы перейти к покупке"
+  title-not-found-title: "TITLE NOT FOUND"
+  quantity-menu-title: "&6&lПокупка предмета"
+  sell-bucket-title: "&e&lПродажа предметов"
+
+buttons:
+  return:
+    name: "&fВозврат"
+    base: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzI0MzE5MTFmNDE3OGI0ZDJiNDEzYWE3ZjVjNzhhZTQ0NDdmZTkyNDY5NDNjMzFkZjMxMTYzYzBlMDQzZTBkNiJ9fX0="
+  prev:
+    name: "&fНазад"
+    positive-base: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTRjNDE3NDZhZjU1N2EyNGJlOGEwOTAzNjlhNTkxYWU2M2Q1Y2U5YzRiZjQwNWQzNTQyNDdkODEwYzdjNyJ9fX0="
+    negative-base: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTE4YTJkZDViZWYwYjA3M2IxMzI3MWE3ZWViOWNmZWE3YWZlODU5M2M1N2E5MzgyMWU0MzE3NTU3MjQ2MTgxMiJ9fX0="
+  next:
+    name: "&fВперёд"
+    positive-base: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmI0YzFkYmQ4NTQ0Y2ZhZWQ5NjNkZjRkMTM5YmM4YmFjNGI3NmFjNGJiYjMwYWI4NmY3NmZiYzMxYWI5YTcwIn19fQ=="
+    negative-base: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDk5ZjI4MzMyYmNjMzQ5ZjQyMDIzYzI5ZTZlNjQxZjRiMTBhNmIxZTQ4NzE4Y2FlNTU3NDY2ZDUxZWI5MjIifX19"
+  sell:
+    name: "&fПродать"
+    lore:
+      - "&ehelp"
+      - "&f&lme"
+    base: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjExNmI2OGQ2MmEzNWMwY2UwYzhjNTU3YWM2MzRmNzY3NzA0OGM2ZmVkMjk2YTBkZDFlZDFhOWM0NzZiMjZlNiJ9fX0="

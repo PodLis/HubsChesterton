@@ -11,6 +11,15 @@ commands:
     description: The main command for HubsChesterton
     usage: <command>
     aliases: [hc]
+  chestpars:
+    description: Load chest to name.yml
+    usage: <command>
+  shop:
+    description: Open famous hubs shop
+    usage: <command>
+  sell:
+    description: Sell your diamonds
+    usage: <command>
 
 permissions:
   chesterton.*:
@@ -19,6 +28,9 @@ permissions:
       chesterton.help: true
       chesterton.reload: true
       chesterton.open: true
+      chestpars.load: true
+      chestpars.shop: true
+      chesterton.sell: true
   chesterton.help:
     description: Display help message.
     default: false
@@ -27,4 +39,13 @@ permissions:
     default: false
   chesterton.open:
     description: Open menu to the player.
+    default: false
+  chesterton.parse:
+    description: Load chest to name.yml
+    default: false
+  chesterton.shop:
+    description: Open famous hubs shop
+    default: false
+  chesterton.sell:
+    description: Sell your diamonds
     default: false

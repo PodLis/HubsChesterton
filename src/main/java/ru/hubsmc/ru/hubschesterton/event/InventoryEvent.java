@@ -10,6 +10,7 @@ import ru.hubsmc.ru.hubschesterton.HubsChesterton;
 import ru.hubsmc.ru.hubschesterton.internal.ChestertonInventoryHolder;
 import ru.hubsmc.ru.hubschesterton.internal.item.ChestertonItem;
 import ru.hubsmc.ru.hubschesterton.internal.menu.ChestertonMenu;
+import ru.hubsmc.ru.hubschesterton.internal.special.PartialInventoryHolder;
 
 public class InventoryEvent implements Listener {
 
@@ -36,6 +37,15 @@ public class InventoryEvent implements Listener {
                         }
                     });
                 }
+            }
+
+        } else if (event.getInventory().getHolder() instanceof PartialInventoryHolder) {
+
+            if (event.getRawSlot() == 53) {
+                event.setCancelled(true);
+                Bukkit.getScheduler().scheduleSyncDelayedTask(HubsChesterton.getInstance(),
+                        () -> ((PartialInventoryHolder) event.getInventory().getHolder()).getPartialHolderInNeed().getItem().onClick((Player) event.getWhoClicked())
+                );
             }
 
         }

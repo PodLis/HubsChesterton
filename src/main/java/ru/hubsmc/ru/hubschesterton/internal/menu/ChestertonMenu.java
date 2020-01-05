@@ -6,40 +6,21 @@ import org.bukkit.inventory.Inventory;
 import ru.hubsmc.ru.hubschesterton.internal.ChestertonInventoryHolder;
 import ru.hubsmc.ru.hubschesterton.internal.item.ChestertonItem;
 
-import static ru.hubsmc.ru.hubschesterton.internal.MenuUtils.registerMenu;
+import static ru.hubsmc.ru.hubschesterton.util.StringUtils.replaceColor;
 
 public abstract class ChestertonMenu {
 
-    private ChestertonItem[] items;
-    private String name;
     private String title;
+    private int slots;
+    private ChestertonMenu parentMenu;
 
-    public ChestertonMenu(String name, String title, int slots) {
-        items = new ChestertonItem[slots];
-        this.name = name;
-        this.title = title;
-        registerMenu(this, name);
-    }
-
-    public void setItem(int slot, ChestertonItem item) {
-        if (slot >= 0 && slot < items.length) {
-            items[slot] = item;
-        }
-    }
-
-    public ChestertonItem getItem(int slot) {
-        if (slot >= 0 && slot < items.length) {
-            return items[slot];
-        }
-        return null;
+    public ChestertonMenu(String title, int slots) {
+        this.title = replaceColor(title);
+        this.slots = slots;
     }
 
     public int size() {
-        return items.length;
-    }
-
-    public String getName() {
-        return name;
+        return slots;
     }
 
     public String getTitle() {
@@ -47,15 +28,25 @@ public abstract class ChestertonMenu {
     }
 
     public void open(Player player) {
-        Inventory inventory = Bukkit.createInventory(new ChestertonInventoryHolder(this), items.length, title);
-
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null) {
-                inventory.setItem(i, items[i].createItemStack(player));
-            }
-        }
-
+        Inventory inventory = Bukkit.createInventory(new ChestertonInventoryHolder(this), slots, title);
+        setItemsToInventory(inventory, player);
         player.openInventory(inventory);
     }
+
+    public void close(Player player) {
+        player.closeInventory();
+    }
+
+    public ChestertonMenu getParentMenu() {
+        return parentMenu;
+    }
+
+    public void setParentMenu(ChestertonMenu parentMenu) {
+        this.parentMenu = parentMenu;
+    }
+
+    abstract protected void setItemsToInventory(Inventory inventory, Player player);
+
+    abstract public ChestertonItem getItem(int slot);
 
 }

@@ -1,0 +1,153 @@
+package ru.hubsmc.ru.hubschesterton.internal.parser;
+
+import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.potion.PotionData;
+import ru.hubsmc.ru.hubschesterton.internal.ActionClickHandler;
+import ru.hubsmc.ru.hubschesterton.internal.action.ItemAction;
+import ru.hubsmc.ru.hubschesterton.internal.action.OpenCategoryItemAction;
+import ru.hubsmc.ru.hubschesterton.internal.item.*;
+import ru.hubsmc.ru.hubschesterton.internal.menu.ChestMenu;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import static ru.hubsmc.ru.hubschesterton.PluginUtils.*;
+
+public class ItemParser {
+
+    static CustomItem parseCustomItem(ConfigurationSection section, ChestMenu menu) {
+
+        CustomItem customItem;
+        String type = section.getString("type");
+        Material material;
+        if (type == null) {
+            material = Material.BEDROCK;
+        } else {
+            material = Material.getMaterial(type);
+        }
+        customItem = new CustomItem(material);
+
+        switch (material) {
+            case POTION:
+            case SPLASH_POTION:
+            case LINGERING_POTION:
+            case TIPPED_ARROW:
+            case LEATHER_BOOTS:
+            case LEATHER_LEGGINGS:
+            case LEATHER_CHESTPLATE:
+            case LEATHER_HELMET:
+            {
+                if (section.getString("color") != null)
+                    customItem.setColor(SubParser.parseColor(section.getString("color")));
+            }
+        }
+
+        if (section.getString("name") != null)
+            customItem.setName(section.getString("name"));
+        customItem.setLore(section.getStringList("lore"));
+        customItem.setEnchanted(section.getBoolean("enchanted"));
+
+        List<ItemAction> actions = new LinkedList<>();
+        for (String s : section.getStringList("on-click")) {
+            ItemAction action = SubParser.parseAction(s, menu);
+            if (action instanceof OpenCategoryItemAction) {
+                ((OpenCategoryItemAction) action).setTitle(customItem.getName());
+            }
+            actions.add(action);
+        }
+        customItem.setClickHandler(new ActionClickHandler(actions));
+
+        return customItem;
+    }
+
+    static ExtendedItem parseExtendedItem(ConfigurationSection section) {
+
+        ExtendedItem extendedItem;
+        String type = section.getString("type");
+        Material material;
+        if (type == null) {
+            material = Material.BEDROCK;
+        } else {
+            material = Material.getMaterial(type);
+        }
+        extendedItem = new ExtendedItem(material);
+
+        switch (material) {
+            case POTION:
+            case SPLASH_POTION:
+            case LINGERING_POTION:
+            case TIPPED_ARROW:
+            {
+                if (section.getConfigurationSection("potion") != null)
+                    extendedItem.setPotionData(SubParser.parsePotionData(section.getConfigurationSection("potion")));
+                break;
+            }
+            case ENCHANTED_BOOK:
+            {
+                if (section.getConfigurationSection("storage") != null)
+                    extendedItem.setStoredEnchantments(SubParser.parseEnchantments(section.getConfigurationSection("storage")));
+                break;
+            }
+            default:
+            {
+                if (section.getConfigurationSection("enchantments") != null)
+                    extendedItem.setEnchantments(SubParser.parseEnchantments(section.getConfigurationSection("enchantments")));
+                break;
+            }
+        }
+
+        return extendedItem;
+    }
+
+    static ShopItem parseShopItem(ConfigurationSection section) {
+
+        ShopItem shopItem;
+        String type = section.getString("type");
+        Material material;
+        if (type == null) {
+            material = Material.BEDROCK;
+        } else {
+            material = Material.getMaterial(type);
+        }
+
+        switch (material) {
+            case POTION:
+            case SPLASH_POTION:
+            case LINGERING_POTION:
+            {
+                if (section.getConfigurationSection("potion") != null) {
+                    PotionData potionData = SubParser.parsePotionData(section.getConfigurationSection("potion"));
+                    shopItem = new ShopItem(material, getPotionPrice(potionData, material));
+                    shopItem.setPotionData(potionData);
+                    return shopItem;
+                }
+            }
+            case TIPPED_ARROW:
+            {
+                if (section.getConfigurationSection("potion") != null) {
+                    PotionData potionData = SubParser.parsePotionData(section.getConfigurationSection("potion"));
+                    shopItem = new ShopItem(material, getArrowPrice(potionData));
+                    shopItem.setPotionData(potionData);
+                    return shopItem;
+                }
+            }
+            case ENCHANTED_BOOK:
+            {
+                if (section.getConfigurationSection("storage") != null) {
+                    Map<Enchantment, Integer> enchantments = SubParser.parseEnchantments(section.getConfigurationSection("storage"));
+                    shopItem = new ShopItem(material, getEnchantedBookPrice(enchantments));
+                    shopItem.setStoredEnchantments(enchantments);
+                    return shopItem;
+                }
+            }
+            default:
+            {
+                return new ShopItem(material, getItemPrice(material));
+            }
+        }
+    }
+
+}

@@ -7,11 +7,11 @@ import ru.hubsmc.ru.hubschesterton.internal.ClickHandler;
 
 public class ChestertonItem {
 
-    private Material material;
+    protected Material material;
     private ItemStack cachedItem;
     private ClickHandler clickHandler;
 
-    private boolean needToRefresh;
+    protected boolean needToRefresh;
 
     public ChestertonItem(Material material) {
         this.material = material;
@@ -39,11 +39,16 @@ public class ChestertonItem {
     }
 
     public ItemStack createItemStack(Player player) {
+        return createItemStack(player, 1);
+    }
+
+    public ItemStack createItemStack(Player player, int amount) {
         if (!needToRefresh && cachedItem != null) {
             return cachedItem;
         }
 
         ItemStack itemStack = setItemData( (material != null) ? new ItemStack(material) : new ItemStack(Material.BEDROCK) , player);
+        itemStack.setAmount(amount);
 
         if (!needToRefresh) {
             cachedItem = itemStack;
