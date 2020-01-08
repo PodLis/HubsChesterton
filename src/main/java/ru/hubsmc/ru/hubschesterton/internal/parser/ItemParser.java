@@ -27,8 +27,10 @@ public class ItemParser {
             material = Material.BEDROCK;
         } else {
             material = Material.getMaterial(type);
+            if (material == null) {
+                material = Material.BEDROCK;
+            }
         }
-        customItem = new CustomItem(material);
 
         switch (material) {
             case POTION:
@@ -40,8 +42,24 @@ public class ItemParser {
             case LEATHER_CHESTPLATE:
             case LEATHER_HELMET:
             {
-                if (section.getString("color") != null)
-                    customItem.setColor(SubParser.parseColor(section.getString("color")));
+                customItem = new CustomItem(material);
+                String color = section.getString("color");
+                if (color != null) {
+                    customItem.setColor(SubParser.parseColor(color));
+                }
+                break;
+            }
+            case PLAYER_HEAD: {
+                customItem = new PlayerHeadItem();
+                String base = section.getString("base");
+                if (base != null) {
+                    ((PlayerHeadItem) customItem).setBase64(base);
+                }
+                break;
+            }
+            default: {
+                customItem = new CustomItem(material);
+                break;
             }
         }
 
